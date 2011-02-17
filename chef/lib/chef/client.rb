@@ -151,7 +151,11 @@ class Chef
         run_started
         
         run_context = setup_run_context
-        converge(run_context)
+        if Chef::Config[:no_convergence]
+          Chef::Log.info("Skipping Convergence")
+        else
+          converge(run_context)
+        end
         save_updated_node
 
         run_status.stop_clock

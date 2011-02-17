@@ -138,6 +138,12 @@ class Chef::Application::Client < Chef::Application
     :proc         => lambda {|v| puts "Chef: #{::Chef::VERSION}"},
     :exit         => 0
 
+  option :no_convergence,
+    :short => "-C",
+    :long => "--no-convergence",
+    :description => "Disable convergence to prevent the running of cookbooks",
+    :proc => lambda { |p| true }
+
   def initialize
     super
 
